@@ -1,20 +1,20 @@
 use ndarray::{Array1};
 use serde::{Deserialize, Serialize};
 
-// Defines Leakt version of a Rectified Linear Unit
+/// Defines Leakt version of a Rectified Linear Unit
 #[derive(Serialize,Deserialize,Debug,Clone,Copy)]
 pub struct LeakyReLU{
     alpha:f32,
 }
 
 impl LeakyReLU{
-    // Returns a new LeakyReLU with the given alpha
+    /// Returns a new LeakyReLU with the given alpha
     #[must_use]
     pub fn new(alpha:f32) -> LeakyReLU{
         LeakyReLU{alpha}
     }
 
-    // Applies the LeakyReLU to the given data
+    /// Applies the LeakyReLU to the given data
     #[must_use]
     pub fn apply(&self, data:&Array1<f32>) -> Array1<f32>{
         data.mapv(|x| if x >= 0.0 { x } else { self.alpha * x })
